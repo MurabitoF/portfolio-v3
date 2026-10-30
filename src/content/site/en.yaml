@@ -33,7 +33,7 @@ experience:
       period: Jul 2024 – present
       summary: New features for the Colonia Suiza platforms and their satellite products, for a client in workers' compensation insurance.
       highlights:
-        - Built, practically on my own, a satellite product where providers manage their appointments and pre-settle the ones they performed, integrated with the main Colonia Suiza system and with invoicing.
+        - "Built a satellite product from start to finish: providers manage their appointments and pre-settle the ones they performed, integrated with the main Colonia Suiza system and with invoicing."
         - Spent a long stretch supporting the client's apps and fixed a large share of their bugs; today I'm the team's go-to person when something hard breaks.
       stack: [React, TypeScript, Java, Spring Boot, Node.js, NestJS, AWS Lambda, MySQL]
     - company: Epidata
@@ -58,14 +58,14 @@ work:
         - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
     - title: Provider portal
       kind: Case study · AyiGroup
-      summary: A satellite product of the Colonia Suiza platform, built practically on my own.
+      summary: A satellite product of the Colonia Suiza platform, which I built end to end.
       stages:
         - { label: Requirement, text: 'Let providers manage their appointments and pre-settle the ones they performed.' }
         - { label: Decision, text: 'The portal on NestJS as AWS Lambda functions; the integrations in Java and Spring Boot, the main system''s own language, so they plug in with the least friction.' }
         - { label: Outcome, text: 'In production, integrated with the main Colonia Suiza system and with invoicing. Still evolving with occasional changes.' }
       facts:
         - { label: Industry, value: Workers' compensation insurance }
-        - { label: Role, value: 'Fullstack developer, near solo' }
+        - { label: Role, value: Main fullstack developer }
         - { label: Stack, value: 'React, NestJS on AWS Lambda, Java, Spring Boot, MySQL on AWS' }
         - { label: Period, value: 'Sep 2025 – Mar 2026, maintained since' }
     - title: Electronic prescriptions

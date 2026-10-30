@@ -33,7 +33,7 @@ experience:
       period: jul. 2024 – actualidad
       summary: Nuevas funcionalidades para las plataformas de Colonia Suiza y sus productos satélite, para un cliente del sector ART.
       highlights:
-        - Desarrollé prácticamente solo un producto satélite donde los prestadores administran sus turnos y preliquidan los que realizaron, integrado con el sistema principal de Colonia Suiza y con facturación.
+        - Desarrollé de punta a punta un producto satélite donde los prestadores administran sus turnos y preliquidan los que realizaron, integrado con el sistema principal de Colonia Suiza y con facturación.
         - Estuve mucho tiempo en el soporte de las apps del cliente y resolví buena parte de sus bugs; hoy el equipo me consulta cuando aparece un problema difícil.
       stack: [React, TypeScript, Java, Spring Boot, Node.js, NestJS, AWS Lambda, MySQL]
     - company: Epidata
@@ -58,14 +58,14 @@ work:
         - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
     - title: Portal de prestadores
       kind: Caso de estudio · AyiGroup
-      summary: Un producto satélite de la plataforma de Colonia Suiza, desarrollado prácticamente solo.
+      summary: Un producto satélite de la plataforma de Colonia Suiza, que desarrollé de punta a punta.
       stages:
         - { label: Requerimiento, text: 'Que los prestadores administren sus turnos y preliquiden los que realizaron.' }
         - { label: Decisión, text: 'El portal en NestJS como funciones de AWS Lambda; las integraciones en Java y Spring Boot, el lenguaje del sistema principal, para integrarlas con la menor fricción.' }
         - { label: Resultado, text: 'En producción, integrado con el sistema principal de Colonia Suiza y con facturación. Sigue evolucionando con cambios esporádicos.' }
       facts:
         - { label: Industria, value: Seguros (ART) }
-        - { label: Rol, value: 'Desarrollador fullstack, prácticamente solo' }
+        - { label: Rol, value: Desarrollador fullstack principal }
         - { label: Stack, value: 'React, NestJS en AWS Lambda, Java, Spring Boot, MySQL en AWS' }
         - { label: Período, value: 'sep. 2025 – mar. 2026, con mantenimiento desde entonces' }
     - title: Recetas electrónicas
