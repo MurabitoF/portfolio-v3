@@ -2,7 +2,7 @@
 // Only elements still below the fold are hidden, and only by this script, so the page
 // reads fine without JavaScript and nothing on the first screen ever blinks.
 const TARGETS = [
-  '.section-heading', '.about .facts > div', '.about .paragraph', '.about .skills > div',
+  '.section-heading', '#about .facts > div', '#about .paragraph', '#about .skills > div',
   '.jobs > li', '.featured > article', '.side-heading', '.side > li',
   '.lead', '.rows > li', '.footer .meta', '.footer .name',
 ].join(',');

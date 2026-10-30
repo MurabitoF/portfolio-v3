@@ -15,10 +15,9 @@ deploy: { label: 'This site, live:', commit: Commit, build: Build, ok: passed, d
 switchLocale: { label: Español, href: /es/, lang: es }
 about:
   heading: About
-  # SAMPLE: replace with Franco's own words
-  paragraph: "I take a client's requirement and carry it all the way to production. At Epidata and AyiGroup I built microservices in Spring Boot and NestJS and the React interfaces that sit on top of them, for teams in several industries."
+  paragraph: "I take a requirement and carry it all the way to production. I build systems for healthcare and insurance: Spring Boot and NestJS services on the backend, React interfaces on the frontend. I work in teams of up to six, side by side with design, product and functional analysts."
   facts:
-    - { label: Based in, value: Argentina }
+    - { label: Based in, value: 'Mar del Plata, Argentina' }
     - { label: Works, value: Remote or hybrid }
     - { label: Experience, value: 4 years }
   skills:
@@ -30,21 +29,21 @@ experience:
   heading: Experience
   items:
     - company: AyiGroup
-      role: '[To do: role]'
-      period: '[To do: start – end]'
-      summary: '[To do: one sentence on what you built and for which kind of client]'
+      role: Fullstack Developer
+      period: Jul 2024 – present
+      summary: New features for the Colonia Suiza platforms and their satellite products, for a client in workers' compensation insurance.
       highlights:
-        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
-        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
-      stack: [Java, Spring Boot, React]
+        - Built, practically on my own, a satellite product where providers manage their appointments and pre-settle the ones they performed, integrated with the main Colonia Suiza system and with invoicing.
+        - Spent a long stretch supporting the client's apps and fixed a large share of their bugs; today I'm the team's go-to person when something hard breaks.
+      stack: [React, TypeScript, Java, Spring Boot, Node.js, NestJS, AWS Lambda, MySQL]
     - company: Epidata
-      role: '[To do: role]'
-      period: '[To do: start – end]'
-      summary: '[To do: one sentence on what you built and for which kind of client]'
+      role: Fullstack Developer
+      period: Nov 2022 – Jul 2024
+      summary: "Fullstack development for healthcare clients: pharmacies and Galeno's medical centers."
       highlights:
-        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
-        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
-      stack: [Node.js, NestJS, React]
+        - Built the electronic prescription integration with health insurers for a new pharmacy sales system covering sales, stock, insurers and invoicing.
+        - Worked on the restyling and modernization of the app Galeno's medical centers use every day, plus bug fixes and optimizations.
+      stack: [React, TypeScript, Node.js, NestJS, Java, Spring Boot]
 work:
   heading: Projects
   featured:
@@ -57,31 +56,30 @@ work:
         - { label: Outcome, text: 'In development.' }
       facts:
         - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
-        - { label: Code, value: '[To do: repository link]' }
-    - title: '[To do: case study 1 title]'
-      kind: Case study
-      summary: '[To do: one sentence about the project, anonymized if under NDA]'
+    - title: Provider portal
+      kind: Case study · AyiGroup
+      summary: A satellite product of the Colonia Suiza platform, built practically on my own.
       stages:
-        - { label: Requirement, text: '[To do]' }
-        - { label: Decision, text: '[To do]' }
-        - { label: Outcome, text: '[To do]' }
+        - { label: Requirement, text: 'Let providers manage their appointments and pre-settle the ones they performed.' }
+        - { label: Decision, text: 'The portal on NestJS as AWS Lambda functions; the integrations in Java and Spring Boot, the main system''s own language, so they plug in with the least friction.' }
+        - { label: Outcome, text: 'In production, integrated with the main Colonia Suiza system and with invoicing. Still evolving with occasional changes.' }
       facts:
-        - { label: Industry, value: '[To do]' }
-        - { label: Role, value: '[To do]' }
-        - { label: Stack, value: '[To do]' }
-        - { label: Period, value: '[To do]' }
-    - title: '[To do: case study 2 title]'
-      kind: Case study
-      summary: '[To do: one sentence about the project, anonymized if under NDA]'
+        - { label: Industry, value: Workers' compensation insurance }
+        - { label: Role, value: 'Fullstack developer, near solo' }
+        - { label: Stack, value: 'React, NestJS on AWS Lambda, Java, Spring Boot, MySQL on AWS' }
+        - { label: Period, value: 'Sep 2025 – Mar 2026, maintained since' }
+    - title: Electronic prescriptions
+      kind: Case study · Epidata
+      summary: The prescription integration of a pharmacy sales system built from scratch, which covered sales, stock, health insurers and invoicing.
       stages:
-        - { label: Requirement, text: '[To do]' }
-        - { label: Decision, text: '[To do]' }
-        - { label: Outcome, text: '[To do]' }
+        - { label: Requirement, text: 'Pull electronic prescriptions from each health insurer, each with its own way of exposing them.' }
+        - { label: Decision, text: 'A Strategy pattern: one prescription interface and one implementation per insurer, so adding an insurer never touches the sales flow.' }
+        - { label: Outcome, text: 'Integration delivered with frontend and backend. I left before the system went live.' }
       facts:
-        - { label: Industry, value: '[To do]' }
-        - { label: Role, value: '[To do]' }
-        - { label: Stack, value: '[To do]' }
-        - { label: Period, value: '[To do]' }
+        - { label: Industry, value: Healthcare, pharmacies }
+        - { label: Role, value: Fullstack developer }
+        - { label: Stack, value: 'React, Node.js, microservices, MySQL' }
+        - { label: Period, value: Aug 2023 – Jul 2024 }
   sideHeading: Other projects
   side:
     - { title: Devscord, summary: Group chat for developers., stack: [React, TypeScript, Firebase], demo: 'https://devscord.vercel.app', code: 'https://github.com/MurabitoF/devscord' }

@@ -1,8 +1,11 @@
 ---
 import '../styles/global.css';
+import fontUrl from '@fontsource-variable/host-grotesk/files/host-grotesk-latin-wght-normal.woff2?url';
 
 interface Props { lang: string; title: string; description: string; alternate: { lang: string; href: string } }
 const { lang, title, description, alternate } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -11,8 +14,24 @@ const { lang, title, description, alternate } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang={alternate.lang} href={new URL(alternate.href, Astro.site)} />
-    <link rel="alternate" hreflang={lang} href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f3f5" media="(prefers-color-scheme: light)" />
+    <!-- Link previews (LinkedIn, Slack, WhatsApp) are the first impression. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- A theme the visitor picked wins over the system setting; set before paint to avoid a flash. -->
     <script is:inline>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
   </head>

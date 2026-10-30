@@ -28,7 +28,7 @@ void main() {
   float line = 1. - min(abs(fract(n - .5) - .5) / fwidth(n), 1.);
   bool index = mod(floor(n + .5), 5.) == 0.;
   float x = gl_FragCoord.x / uRes.x;
-  float quiet = uRes.x < uRes.y ? .45 : mix(.4, 1., smoothstep(.42, .78, x)); // text lives on the left
+  float quiet = uRes.x < uRes.y ? .3 : mix(.4, 1., smoothstep(.42, .78, x)); // text lives on the left
   o = vec4(mix(uBg, index ? uAccent : uLine, line * (index ? .55 : .22) * quiet), 1.);
 }`;
 
@@ -70,8 +70,8 @@ export function mountField(canvas: HTMLCanvasElement) {
   new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   matchMedia('(prefers-color-scheme: light)').addEventListener('change', paint);
 
-  // ponytail: renders at 0.75x device pixels; the field is soft, raise if lines look blurry on 1x screens
-  const dpr = Math.min(devicePixelRatio, 2) * 0.75;
+  // ponytail: renders at 0.75x device pixels (0.5x on touch screens, the lighter mobile version); raise if lines look blurry
+  const dpr = Math.min(devicePixelRatio, 2) * (matchMedia('(pointer: coarse)').matches ? 0.5 : 0.75);
   const resize = () => {
     canvas.width = Math.round(canvas.clientWidth * dpr);
     canvas.height = Math.round(canvas.clientHeight * dpr);
@@ -98,13 +98,20 @@ export function mountField(canvas: HTMLCanvasElement) {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
   if (still) {
-    draw(0);
-    addEventListener('scroll', () => draw(0), { passive: true });
-    new MutationObserver(() => draw(0)).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    const redraw = () => draw(0);
+    redraw();
+    addEventListener('scroll', redraw, { passive: true });
+    new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change', redraw);
     return;
   }
+  // The drift alone is slow enough for 30fps; scroll and pointer get full rate so the field tracks them smoothly.
+  let last = 0, active = 0;
+  const wake = () => { active = performance.now(); };
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('pointermove', wake, { passive: true });
   const loop = (now: number) => {
-    if (!document.hidden) draw(now);
+    if (!document.hidden && (now - last > 30 || now - active < 300)) { draw(now); last = now; }
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);

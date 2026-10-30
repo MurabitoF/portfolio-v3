@@ -15,10 +15,9 @@ deploy: { label: 'Este sitio, en vivo:', commit: Commit, build: Build, ok: ok, d
 switchLocale: { label: English, href: /, lang: en }
 about:
   heading: Sobre mí
-  # MUESTRA: reemplazar con texto de Franco
-  paragraph: "Tomo el requerimiento de un cliente y lo llevo hasta producción. En Epidata y AyiGroup construí microservicios en Spring Boot y NestJS y las interfaces en React que los usan, para equipos de distintas industrias."
+  paragraph: "Tomo un requerimiento y lo llevo hasta producción. Construyo sistemas para salud y seguros: servicios en Spring Boot y NestJS en el backend, interfaces en React en el frontend. Trabajo en equipos de hasta seis personas, codo a codo con diseño, producto y analistas funcionales."
   facts:
-    - { label: Desde, value: Argentina }
+    - { label: Desde, value: 'Mar del Plata, Argentina' }
     - { label: Modalidad, value: Remoto o híbrido }
     - { label: Experiencia, value: 4 años }
   skills:
@@ -30,21 +29,21 @@ experience:
   heading: Experiencia
   items:
     - company: AyiGroup
-      role: '[Por completar: rol]'
-      period: '[Por completar: inicio – fin]'
-      summary: '[Por completar: una frase sobre qué construiste y para qué tipo de cliente]'
+      role: Desarrollador Fullstack
+      period: jul. 2024 – actualidad
+      summary: Nuevas funcionalidades para las plataformas de Colonia Suiza y sus productos satélite, para un cliente del sector ART.
       highlights:
-        - '[Por completar: logro concreto: qué entregaste, a qué escala o con qué impacto]'
-        - '[Por completar: logro concreto: qué entregaste, a qué escala o con qué impacto]'
-      stack: [Java, Spring Boot, React]
+        - Desarrollé prácticamente solo un producto satélite donde los prestadores administran sus turnos y preliquidan los que realizaron, integrado con el sistema principal de Colonia Suiza y con facturación.
+        - Estuve mucho tiempo en el soporte de las apps del cliente y resolví buena parte de sus bugs; hoy el equipo me consulta cuando aparece un problema difícil.
+      stack: [React, TypeScript, Java, Spring Boot, Node.js, NestJS, AWS Lambda, MySQL]
     - company: Epidata
-      role: '[Por completar: rol]'
-      period: '[Por completar: inicio – fin]'
-      summary: '[Por completar: una frase sobre qué construiste y para qué tipo de cliente]'
+      role: Desarrollador Fullstack
+      period: nov. 2022 – jul. 2024
+      summary: "Desarrollo fullstack para clientes de salud: farmacias y los centros médicos de Galeno."
       highlights:
-        - '[Por completar: logro concreto: qué entregaste, a qué escala o con qué impacto]'
-        - '[Por completar: logro concreto: qué entregaste, a qué escala o con qué impacto]'
-      stack: [Node.js, NestJS, React]
+        - Hice la integración de recetas electrónicas con las obras sociales para un nuevo sistema de ventas de farmacias, con ventas, stock, obras sociales y facturación.
+        - Trabajé en el restyling y la modernización de la app que usan a diario los centros médicos de Galeno, además de bugs y optimizaciones.
+      stack: [React, TypeScript, Node.js, NestJS, Java, Spring Boot]
 work:
   heading: Proyectos
   featured:
@@ -57,31 +56,30 @@ work:
         - { label: Resultado, text: 'En desarrollo.' }
       facts:
         - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
-        - { label: Código, value: '[Por completar: link al repositorio]' }
-    - title: '[Por completar: título del caso 1]'
-      kind: Caso de estudio
-      summary: '[Por completar: una frase sobre el proyecto, anonimizado si hay NDA]'
+    - title: Portal de prestadores
+      kind: Caso de estudio · AyiGroup
+      summary: Un producto satélite de la plataforma de Colonia Suiza, desarrollado prácticamente solo.
       stages:
-        - { label: Requerimiento, text: '[Por completar]' }
-        - { label: Decisión, text: '[Por completar]' }
-        - { label: Resultado, text: '[Por completar]' }
+        - { label: Requerimiento, text: 'Que los prestadores administren sus turnos y preliquiden los que realizaron.' }
+        - { label: Decisión, text: 'El portal en NestJS como funciones de AWS Lambda; las integraciones en Java y Spring Boot, el lenguaje del sistema principal, para integrarlas con la menor fricción.' }
+        - { label: Resultado, text: 'En producción, integrado con el sistema principal de Colonia Suiza y con facturación. Sigue evolucionando con cambios esporádicos.' }
       facts:
-        - { label: Industria, value: '[Por completar]' }
-        - { label: Rol, value: '[Por completar]' }
-        - { label: Stack, value: '[Por completar]' }
-        - { label: Período, value: '[Por completar]' }
-    - title: '[Por completar: título del caso 2]'
-      kind: Caso de estudio
-      summary: '[Por completar: una frase sobre el proyecto, anonimizado si hay NDA]'
+        - { label: Industria, value: Seguros (ART) }
+        - { label: Rol, value: 'Desarrollador fullstack, prácticamente solo' }
+        - { label: Stack, value: 'React, NestJS en AWS Lambda, Java, Spring Boot, MySQL en AWS' }
+        - { label: Período, value: 'sep. 2025 – mar. 2026, con mantenimiento desde entonces' }
+    - title: Recetas electrónicas
+      kind: Caso de estudio · Epidata
+      summary: La integración de recetas de un sistema de ventas para farmacias hecho desde cero, con ventas, stock, obras sociales y facturación.
       stages:
-        - { label: Requerimiento, text: '[Por completar]' }
-        - { label: Decisión, text: '[Por completar]' }
-        - { label: Resultado, text: '[Por completar]' }
+        - { label: Requerimiento, text: 'Obtener las recetas electrónicas de cada obra social, cada una con su propia forma de exponerlas.' }
+        - { label: Decisión, text: 'Un patrón Strategy: una interfaz de recetas y una implementación por obra social, así sumar una obra social nunca toca el flujo de ventas.' }
+        - { label: Resultado, text: 'Integración entregada, con front y back. Me fui antes de que el sistema saliera a producción.' }
       facts:
-        - { label: Industria, value: '[Por completar]' }
-        - { label: Rol, value: '[Por completar]' }
-        - { label: Stack, value: '[Por completar]' }
-        - { label: Período, value: '[Por completar]' }
+        - { label: Industria, value: Salud, farmacias }
+        - { label: Rol, value: Desarrollador fullstack }
+        - { label: Stack, value: 'React, Node.js, microservicios, MySQL' }
+        - { label: Período, value: ago. 2023 – jul. 2024 }
   sideHeading: Otros proyectos
   side:
     - { title: Devscord, summary: Chat grupal para desarrolladores., stack: [React, TypeScript, Firebase], demo: 'https://devscord.vercel.app', code: 'https://github.com/MurabitoF/devscord' }
