@@ -1,104 +1,91 @@
 ---
 import { execSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import type { CollectionEntry } from 'astro:content';
 
-interface Props { site: CollectionEntry<'site'>['data']; lang: string }
-const { site, lang } = Astro.props;
+interface Props { site: CollectionEntry<'site'>['data'] }
+const { site } = Astro.props;
 
 // The live line: when this page was built and from which commit. In CI the env vars are set.
 const builtAt = new Date().toISOString();
 let sha = process.env.GITHUB_SHA ?? '';
 if (!sha) try { sha = execSync('git rev-parse HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); } catch {}
 const repo = 'https://github.com/MurabitoF/portfolio-v3';
+// The CV link only renders when the PDF ships, so it never 404s.
+const hasCv = existsSync(`public${site.cv.href}`);
 const runUrl = process.env.GITHUB_RUN_ID ? `${repo}/actions/runs/${process.env.GITHUB_RUN_ID}` : undefined;
 ---
-<section class="hero">
-  <header class="bar">
-    <a class="mark" href={lang === 'en' ? '/' : '/es/'}>{site.name}</a>
-    <nav class="links">
-      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
-      <a class="icon-link" href={site.switchLocale.href} hreflang={site.switchLocale.lang} lang={site.switchLocale.lang} aria-label={site.switchLocale.label}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" /></svg>
-        <span aria-hidden="true">{site.switchLocale.lang.toUpperCase()}</span>
-      </a>
-      <button class="theme" type="button" data-theme-toggle data-to-dark={site.theme.toDark} data-to-light={site.theme.toLight} aria-label={site.theme.toLight}>
-        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" /></svg>
-        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" /></svg>
-      </button>
-    </nav>
-  </header>
-
-  <h1>{site.name.split(' ').map((word) => <span>{word}</span>)}</h1>
-  <div class="row">
+<section class="hero" aria-labelledby="hero-name">
+  <h1 id="hero-name">{site.name.split(' ').map((word) => <span>{word} </span>)}</h1>
+  <div class="intro">
     <p class="lede">{site.lede}</p>
-    <a class="btn" href={site.cv.href} download>{site.cv.label}</a>
+    <div class="pipeline">
+      <p class="pipeline-label" id="pipeline-label">{site.deploy.label}</p>
+      <ol aria-labelledby="pipeline-label">
+        {sha && <li><span class="stage">{site.deploy.commit}</span> <a href={`${repo}/commit/${sha}`}>{sha.slice(0, 7)}</a></li>}
+        <li><span class="stage">{site.deploy.build}</span> {site.deploy.ok}</li>
+        <li class="live"><span class="stage">{site.deploy.deploy}</span> <a href={runUrl ?? repo}><time datetime={builtAt} data-relative>{builtAt.slice(0, 10)}</time></a></li>
+      </ol>
+    </div>
+    <p class="availability">{site.availability}</p>
+    <div class="actions">
+      {hasCv && <a class="btn" href={site.cv.href} download>{site.cv.label}</a>}
+      <a class={hasCv ? 'text-link' : 'btn'} href={site.contact.rows[0].href}>{site.contactCta}</a>
+    </div>
   </div>
-  <p class="deploy">
-    <a href={runUrl ?? repo}>{site.deploy.label} <time datetime={builtAt} data-relative>{builtAt.slice(0, 10)}</time></a>
-    {sha && <> · <a href={`${repo}/commit/${sha}`}>{site.deploy.commit} {sha.slice(0, 7)}</a></>}
-  </p>
 </section>
 
 <style>
-  .hero {
-    min-height: 100svh;
-    display: grid; grid-template-rows: auto 1fr auto auto auto;
-    padding: 0 var(--margin) 48px;
-  }
-  .bar { display: flex; justify-content: space-between; align-items: baseline; padding-top: 24px; font-size: var(--step-small); }
-  .mark { font-weight: 600; }
-  .links { display: flex; gap: 28px; align-items: baseline; color: var(--muted); }
-  .links a, .theme { transition: color 160ms var(--ease-out); }
-  .links a:hover, .theme:hover { color: var(--ink); }
-  .theme { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; align-self: center; display: grid; }
-  .icon-link { display: inline-flex; gap: 6px; align-items: center; align-self: center; }
-  svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  /* the icon shows the theme you switch to */
-  .theme .sun, .theme[data-current='light'] .moon { display: block; }
-  .theme .moon, .theme[data-current='light'] .sun { display: none; }
+  /* Name, then who and what, then the two actions, then the deploy proof: one left-aligned column. */
+  .hero { padding: 0 var(--margin) 40px; }
 
   h1 {
-    grid-row: 3;
+    margin-top: clamp(48px, 9svh, 140px);
     font-weight: 600; font-size: var(--step-display);
     line-height: 0.88; letter-spacing: -0.045em;
-    margin-bottom: 40px;
   }
   h1 span { display: block; }
-  .row { grid-row: 4; display: flex; justify-content: space-between; align-items: end; gap: 32px; }
-  .lede { max-width: 34ch; font-size: var(--step-lead); line-height: 1.3; }
-  .btn { flex: none; }
-  .deploy { grid-row: 5; margin-top: 40px; color: var(--muted); font-size: var(--step-small); font-variant-numeric: tabular-nums; }
-  .deploy a:hover { color: var(--ink); }
-
-  @media (max-width: 760px) {
-    .links a:not([hreflang]) { display: none; }
-    .row { flex-direction: column; align-items: start; }
+  .intro { margin-top: clamp(24px, 2.5vw, 40px); }
+  .lede { font-size: var(--step-lead); line-height: 1.3; max-width: 34ch; }
+  .availability { margin-top: 16px; color: var(--muted); max-width: 52ch; }
+  .actions { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+  .text-link { font-weight: 600; font-size: var(--step-small); text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; transition: color 160ms var(--ease-out); }
+  .text-link:hover { color: var(--accent); }
+  /* This site's own path to production: real commit, build and deploy time. */
+  .pipeline { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-variant-numeric: tabular-nums; }
+  .pipeline-label { color: var(--muted); }
+  .pipeline ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; }
+  .pipeline li { display: flex; align-items: center; gap: 8px; }
+  .pipeline li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+  .pipeline li + li { padding-left: 36px; position: relative; }
+  .pipeline li + li > :first-child::before { content: ''; position: absolute; left: 8px; top: 50%; width: 20px; height: 2px; background: color-mix(in oklab, var(--muted), transparent 50%); }
+  .pipeline .stage { color: var(--muted); }
+  .pipeline a { text-decoration: underline; text-decoration-color: color-mix(in oklab, currentColor, transparent 65%); text-underline-offset: 0.25em; }
+  .pipeline a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  .pipeline .live::before { background: var(--accent); outline: 2px solid color-mix(in oklab, var(--accent), transparent 40%); outline-offset: 0; animation: live 2.4s var(--ease-out) infinite; }
+  @keyframes live { 70%, 100% { outline-offset: 6px; outline-color: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .pipeline .live::before { animation: none; } }
+  /* Narrow screens: the pipeline runs top to bottom so a connector never dangles at a line break. */
+  @media (max-width: 560px) {
+    .pipeline { flex-direction: column; align-items: start; }
+    .pipeline ol { flex-direction: column; align-items: start; gap: 12px; }
+    .pipeline li + li { padding-left: 0; }
+    .pipeline li + li > :first-child::before { left: 3px; top: -12px; width: 2px; height: 12px; }
   }
 </style>
 
 <script>
   const root = document.documentElement;
-  const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
-  const current = () => root.dataset.theme ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-  const label = () => {
-    toggle.dataset.current = current();
-    toggle.ariaLabel = current() === 'dark' ? toggle.dataset.toLight! : toggle.dataset.toDark!;
-    toggle.title = toggle.ariaLabel;
-  };
-  label();
-  matchMedia('(prefers-color-scheme: light)').addEventListener('change', label);
-  toggle.addEventListener('click', () => {
-    root.dataset.theme = current() === 'dark' ? 'light' : 'dark';
-    try { localStorage.setItem('theme', root.dataset.theme); } catch {}
-    label();
-  });
-
-  // "Deployed 3 hours ago", in the page's language.
+  // "3 hours ago" in the page's language; past 60 days a plain date, so an old deploy doesn't read as neglect.
   const time = document.querySelector<HTMLTimeElement>('[data-relative]');
   if (time) {
-    const rtf = new Intl.RelativeTimeFormat(root.lang, { numeric: 'auto' });
     const s = (Date.parse(time.dateTime) - Date.now()) / 1000;
-    const [value, unit] = Math.abs(s) < 3600 ? [s / 60, 'minute'] : Math.abs(s) < 86400 ? [s / 3600, 'hour'] : [s / 86400, 'day'];
-    time.textContent = rtf.format(Math.round(value), unit as Intl.RelativeTimeFormatUnit);
+    if (Math.abs(s) > 60 * 86400) {
+      time.textContent = new Intl.DateTimeFormat(root.lang, { dateStyle: 'medium' }).format(new Date(time.dateTime));
+    } else {
+      const rtf = new Intl.RelativeTimeFormat(root.lang, { numeric: 'auto' });
+      const [value, unit] = Math.abs(s) < 3600 ? [s / 60, 'minute'] : Math.abs(s) < 86400 ? [s / 3600, 'hour'] : [s / 86400, 'day'];
+      time.textContent = rtf.format(Math.round(value), unit as Intl.RelativeTimeFormatUnit);
+    }
   }
 </script>

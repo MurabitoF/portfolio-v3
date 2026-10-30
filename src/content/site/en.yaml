@@ -2,18 +2,21 @@ name: Franco Murabito
 title: Franco Murabito, fullstack developer
 description: Fullstack developer with four years taking client requirements to production with React, Java/Spring Boot and Node/NestJS.
 lede: Fullstack developer. Four years taking client requirements to production with React, Spring Boot and NestJS.
+availability: Open to fullstack roles, remote or hybrid.
+contactCta: Email me
+skip: Skip to content
 cv: { label: Download CV, href: /cv-en.pdf }
 nav:
   - { label: Experience, href: '#experience' }
-  - { label: Work, href: '#work' }
+  - { label: Projects, href: '#projects' }
   - { label: Contact, href: '#contact' }
 theme: { toDark: Dark mode, toLight: Light mode }
-deploy: { label: Deployed, commit: commit }
+deploy: { label: 'This site, live:', commit: Commit, build: Build, ok: passed, deploy: Deployed }
 switchLocale: { label: Español, href: /es/, lang: es }
 about:
   heading: About
   # SAMPLE: replace with Franco's own words
-  paragraph: I take a client's requirement and carry it all the way to production. Four years at Epidata and AyiGroup building microservices in Spring Boot and NestJS and the React interfaces that sit on top of them, for teams in several industries.
+  paragraph: "I take a client's requirement and carry it all the way to production. At Epidata and AyiGroup I built microservices in Spring Boot and NestJS and the React interfaces that sit on top of them, for teams in several industries."
   facts:
     - { label: Based in, value: Argentina }
     - { label: Works, value: Remote or hybrid }
@@ -30,50 +33,69 @@ experience:
       role: '[To do: role]'
       period: '[To do: start – end]'
       summary: '[To do: one sentence on what you built and for which kind of client]'
+      highlights:
+        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
+        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
       stack: [Java, Spring Boot, React]
     - company: Epidata
       role: '[To do: role]'
       period: '[To do: start – end]'
       summary: '[To do: one sentence on what you built and for which kind of client]'
+      highlights:
+        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
+        - '[To do: concrete outcome: what you shipped, at what scale or with what impact]'
       stack: [Node.js, NestJS, React]
 work:
-  heading: Work
+  heading: Projects
   featured:
     - title: Page builder
       kind: Flagship project, in progress
-      summary: A platform to build web pages by dragging and arranging components. Modular monolith in Spring Boot with an asynchronous worker on RabbitMQ.
+      summary: A visual web page builder, end to end.
+      stages:
+        - { label: Requirement, text: 'Build web pages without writing code, by dragging and arranging components.' }
+        - { label: Decision, text: 'A modular monolith in Spring Boot with an asynchronous worker on RabbitMQ, instead of microservices.' }
+        - { label: Outcome, text: 'In development.' }
       facts:
         - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
-        - { label: Status, value: In development }
+        - { label: Code, value: '[To do: repository link]' }
     - title: '[To do: case study 1 title]'
       kind: Case study
-      summary: '[To do: the problem, what you decided and the result, anonymized if under NDA]'
+      summary: '[To do: one sentence about the project, anonymized if under NDA]'
+      stages:
+        - { label: Requirement, text: '[To do]' }
+        - { label: Decision, text: '[To do]' }
+        - { label: Outcome, text: '[To do]' }
       facts:
         - { label: Industry, value: '[To do]' }
         - { label: Role, value: '[To do]' }
         - { label: Stack, value: '[To do]' }
+        - { label: Period, value: '[To do]' }
     - title: '[To do: case study 2 title]'
       kind: Case study
-      summary: '[To do: the problem, what you decided and the result, anonymized if under NDA]'
+      summary: '[To do: one sentence about the project, anonymized if under NDA]'
+      stages:
+        - { label: Requirement, text: '[To do]' }
+        - { label: Decision, text: '[To do]' }
+        - { label: Outcome, text: '[To do]' }
       facts:
         - { label: Industry, value: '[To do]' }
         - { label: Role, value: '[To do]' }
         - { label: Stack, value: '[To do]' }
-  sideHeading: Side projects
+        - { label: Period, value: '[To do]' }
+  sideHeading: Other projects
   side:
     - { title: Devscord, summary: Group chat for developers., stack: [React, TypeScript, Firebase], demo: 'https://devscord.vercel.app', code: 'https://github.com/MurabitoF/devscord' }
     - { title: Prototypes, summary: 'An online playground for HTML, CSS and JavaScript.', stack: [React, TypeScript, Vite], demo: 'https://prototypes-gamma.vercel.app', code: 'https://github.com/MurabitoF/prototypes' }
     - { title: Task Board, summary: A task board with its own REST API., stack: [React, NestJS, Prisma], code: 'https://github.com/MurabitoF/task-board-api' }
-  kindLabel: Type
   demoLabel: Demo
   codeLabel: Code
 contact:
   heading: Contact
-  lead: Open to semi-senior and senior fullstack roles, remote or hybrid.
+  lead: Hiring a fullstack developer? Reach me by email or LinkedIn.
   rows:
     - { label: Email, value: hola@francomurabito.dev, href: 'mailto:hola@francomurabito.dev' }
     - { label: LinkedIn, value: in/franco-murabito, href: 'https://www.linkedin.com/in/franco-murabito/' }
     - { label: GitHub, value: MurabitoF, href: 'https://github.com/MurabitoF' }
-    - { label: CV, value: Download PDF, href: /cv-en.pdf }
+    - { label: CV, value: Download CV, href: /cv-en.pdf }
 footer:
-  rights: Built with Astro.
+  rights: Deployed with GitHub Actions to Cloudflare Pages.

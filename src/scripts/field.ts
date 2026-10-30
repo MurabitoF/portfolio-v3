@@ -27,7 +27,9 @@ void main() {
   float n = h * 22.;
   float line = 1. - min(abs(fract(n - .5) - .5) / fwidth(n), 1.);
   bool index = mod(floor(n + .5), 5.) == 0.;
-  o = vec4(mix(uBg, index ? uAccent : uLine, line * (index ? .55 : .22)), 1.);
+  float x = gl_FragCoord.x / uRes.x;
+  float quiet = uRes.x < uRes.y ? .45 : mix(.4, 1., smoothstep(.42, .78, x)); // text lives on the left
+  o = vec4(mix(uBg, index ? uAccent : uLine, line * (index ? .55 : .22) * quiet), 1.);
 }`;
 
 const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);

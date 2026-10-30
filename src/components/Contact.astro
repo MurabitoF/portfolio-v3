@@ -1,17 +1,22 @@
 ---
+import { existsSync } from 'node:fs';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props { site: CollectionEntry<'site'>['data'] }
 const { contact } = Astro.props.site;
+// A PDF row only renders when the file ships, so it never 404s.
+const rows = contact.rows.filter((row) => !row.href.endsWith('.pdf') || existsSync(`public${row.href}`));
 ---
 <section class="section" id="contact" aria-labelledby="contact-heading">
   <h2 class="section-heading" id="contact-heading">{contact.heading}</h2>
   <p class="lead">{contact.lead}</p>
   <ul class="rows">
-    {contact.rows.map((row) => (
+    {rows.map((row) => (
       <li>
         <span class="label">{row.label}</span>
-        <a href={row.href} download={row.href.endsWith('.pdf') ? '' : undefined}>{row.value}</a>
+        <a href={row.href} download={row.href.endsWith('.pdf') ? '' : undefined}>
+          {row.value.includes('@') ? <>{row.value.split('@')[0]}@<wbr />{row.value.split('@')[1]}</> : row.value}
+        </a>
       </li>
     ))}
   </ul>
@@ -23,12 +28,18 @@ const { contact } = Astro.props.site;
   .rows li { display: grid; grid-template-columns: 8rem 1fr; align-items: baseline; gap: 24px; }
   .label { color: var(--muted); font-size: var(--step-small); }
   .rows a {
-    font-weight: 600; font-size: var(--step-head); line-height: 1.1; letter-spacing: -0.035em;
-    overflow-wrap: anywhere; transition: color 160ms var(--ease-out);
+    font-weight: 600; font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.02em;
+    overflow-wrap: break-word; transition: color 160ms var(--ease-out);
   }
-  .rows a:hover { color: var(--accent); }
+  /* the address is the primary row and must fit on one line at every width */
+  .rows li:first-child a { font-size: min(var(--step-head), 5.4vw); line-height: 1.1; letter-spacing: -0.035em; }
+  .rows li:first-child { margin-bottom: 16px; }
+  .rows a { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: color-mix(in oklab, currentColor, transparent 70%); text-underline-offset: 0.18em; }
+  .rows a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
   @media (max-width: 760px) {
     .rows li { grid-template-columns: 4.5rem 1fr; gap: 12px; }
+    /* the address stays whole on a phone; it may only break after the @ */
+    .rows li:first-child a { font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.02em; }
   }
 </style>

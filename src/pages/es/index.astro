@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
 import About from '../../components/About.astro';
 import Experience from '../../components/Experience.astro';
@@ -11,8 +12,9 @@ import Footer from '../../components/Footer.astro';
 const site = (await getEntry('site', 'es'))!.data;
 ---
 <Base lang="es" title={site.title} description={site.description} alternate={{ lang: 'en', href: '/' }}>
-  <main>
-    <Hero site={site} lang="es" />
+  <Header site={site} lang="es" />
+  <main id="content" tabindex="-1">
+    <Hero site={site} />
     <About site={site} />
     <Experience site={site} />
     <Work site={site} />

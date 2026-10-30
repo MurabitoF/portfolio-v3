@@ -18,7 +18,7 @@ export function mountReveal() {
       el.classList.add('is-in');
       io.unobserve(el);
     });
-  }, { rootMargin: '0px 0px -8% 0px' });
+  }); // no bottom inset: the last element on the page must still be able to enter
 
   for (const el of document.querySelectorAll<HTMLElement>(TARGETS)) {
     if (el.getBoundingClientRect().top < innerHeight) continue;

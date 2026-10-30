@@ -4,66 +4,68 @@ import type { CollectionEntry } from 'astro:content';
 interface Props { site: CollectionEntry<'site'>['data'] }
 const { work } = Astro.props.site;
 ---
-<section class="section" id="work" aria-labelledby="work-heading">
-  <h2 class="section-heading" id="work-heading">{work.heading}</h2>
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <h2 class="section-heading" id="projects-heading">{work.heading}</h2>
 
   <div class="featured">
     {work.featured.map((item) => (
-      <article>
-        <h3 class="title">{item.href ? <a href={item.href}>{item.title}</a> : item.title}</h3>
-        <p class="summary">{item.summary}</p>
-        <dl class="facts">
-          {[{ label: work.kindLabel, value: item.kind }, ...item.facts].map((fact) => (
-            <div>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
+      <article class="cols">
+        <div>
+          <h3 class="item-title">{item.href ? <a href={item.href}>{item.title}</a> : item.title}</h3>
+          <p class="kind">{item.kind}</p>
+        </div>
+        <div>
+          <p>{item.summary}</p>
+          <ol class="stages">
+            {item.stages.map((stage) => (
+              <li><span class="stage-label">{stage.label}</span>{stage.text}</li>
+            ))}
+          </ol>
+          <dl class="facts">
+            {item.facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </article>
     ))}
   </div>
 
-  <h3 class="side-heading">{work.sideHeading}</h3>
+  <h3 class="side-heading item-title">{work.sideHeading}</h3>
   <ul class="side">
     {work.side.map((project) => (
-      <li>
-        <p class="side-title">{project.title}</p>
-        <p class="side-summary">{project.summary}</p>
-        <ul class="tags">{project.stack.map((tech) => <li>{tech}</li>)}</ul>
-        <p class="side-links">
-          {project.demo && <a href={project.demo}>{work.demoLabel}</a>}
-          <a href={project.code}>{work.codeLabel}</a>
-        </p>
+      <li class="cols">
+        <h4 class="side-title">{project.title}</h4>
+        <div>
+          <p>{project.summary}</p>
+          <ul class="tags">{project.stack.map((tech) => <li>{tech}</li>)}</ul>
+          <p class="side-links">
+            {project.demo && <a href={project.demo} aria-label={`${work.demoLabel}: ${project.title}`}>{work.demoLabel}</a>}
+            <a href={project.code} aria-label={`${work.codeLabel}: ${project.title}`}>{work.codeLabel}</a>
+          </p>
+        </div>
       </li>
     ))}
   </ul>
 </section>
 
 <style>
-  .featured { display: grid; gap: clamp(112px, 10vw, 144px); }
-  article {
-    display: grid; grid-template-columns: 1fr minmax(0, 30rem); grid-template-areas: 'title summary' 'title facts';
-    column-gap: 32px; align-items: start;
-  }
-  .title { grid-area: title; font-weight: 600; font-size: var(--step-head); line-height: 0.95; letter-spacing: -0.035em; max-width: 14ch; }
-  .title a:hover { color: var(--accent); }
-  .summary { grid-area: summary; max-width: 42ch; }
-  .facts { grid-area: facts; margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 16px 24px; font-size: var(--step-small); }
+  .featured { display: grid; gap: clamp(72px, 7vw, 112px); }
+  .item-title { max-width: 18ch; }
+  .item-title a:hover { color: var(--accent); }
+  .kind { margin-top: 8px; color: var(--muted); }
+  .stages { margin-top: 24px; }
+  .facts { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; font-size: var(--step-small); }
   .facts dt { color: var(--muted); }
 
-  .side-heading { margin-top: clamp(96px, 10vw, 160px); margin-bottom: 32px; font-weight: 600; font-size: var(--step-lead); letter-spacing: -0.02em; }
-  .side { list-style: none; padding: 0; display: grid; gap: 28px; }
-  .side > li { display: grid; grid-template-columns: 12rem 1fr 1fr auto; gap: 8px 32px; align-items: baseline; }
-  .side-title { font-weight: 600; font-size: var(--step-lead); }
-  .side-links { display: flex; gap: 20px; }
-  .side-links a { color: var(--accent); }
-  .side-links a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
-
-  @media (max-width: 900px) {
-    article { grid-template-columns: 1fr; grid-template-areas: 'title' 'summary' 'facts'; }
-    .summary { margin-top: 16px; }
-    .side { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 40px 32px; }
-    .side > li { grid-template-columns: 1fr; }
-  }
+  .side-heading { margin-top: clamp(96px, 10vw, 160px); margin-bottom: 32px; }
+  .side { list-style: none; padding: 0; display: grid; gap: 40px; }
+  .side-title { font-size: var(--step-body); font-weight: 600; }
+  .side .tags { margin-top: 8px; }
+  .side-links { margin-top: 8px; display: flex; gap: 20px; }
+  .side-links a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--accent), transparent 60%); text-underline-offset: 0.25em; }
+  .side-links a:hover { text-decoration-color: currentColor; }
 </style>
