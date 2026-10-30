@@ -76,7 +76,7 @@ work:
         - { label: Decisión, text: 'Un patrón Strategy: una interfaz de recetas y una implementación por obra social, así sumar una obra social nunca toca el flujo de ventas.' }
         - { label: Resultado, text: 'Integración entregada, con front y back. Me fui antes de que el sistema saliera a producción.' }
       facts:
-        - { label: Industria, value: Salud, farmacias }
+        - { label: Industria, value: 'Salud, farmacias' }
         - { label: Rol, value: Desarrollador fullstack }
         - { label: Stack, value: 'React, Node.js, microservicios, MySQL' }
         - { label: Período, value: ago. 2023 – jul. 2024 }

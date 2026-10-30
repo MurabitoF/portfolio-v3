@@ -76,7 +76,7 @@ work:
         - { label: Decision, text: 'A Strategy pattern: one prescription interface and one implementation per insurer, so adding an insurer never touches the sales flow.' }
         - { label: Outcome, text: 'Integration delivered with frontend and backend. I left before the system went live.' }
       facts:
-        - { label: Industry, value: Healthcare, pharmacies }
+        - { label: Industry, value: 'Healthcare, pharmacies' }
         - { label: Role, value: Fullstack developer }
         - { label: Stack, value: 'React, Node.js, microservices, MySQL' }
         - { label: Period, value: Aug 2023 – Jul 2024 }
