@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { site: CollectionEntry<'site'>['data'] }
+const { site } = Astro.props;
+---
+<footer class="footer">
+  <p class="meta"><span>© {new Date().getFullYear()} {site.name}</span><span>{site.footer.rights}</span></p>
+  <p class="name" aria-hidden="true">{site.name}</p>
+</footer>
+
+<style>
+  .footer { padding: clamp(120px, 12vw, 192px) var(--margin) 24px; overflow: hidden; }
+  .meta { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: var(--step-small); }
+  /* the name returns at full width: its advance is ~6.7em in Host Grotesk 600 */
+  .name { margin-top: 16px; font-weight: 600; font-size: calc((100vw - 2 * var(--margin)) / 6.7); line-height: 0.85; letter-spacing: -0.05em; white-space: nowrap; }
+</style>

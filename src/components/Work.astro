@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { site: CollectionEntry<'site'>['data'] }
+const { work } = Astro.props.site;
+---
+<section class="section" id="work" aria-labelledby="work-heading">
+  <h2 class="section-heading" id="work-heading">{work.heading}</h2>
+
+  <div class="featured">
+    {work.featured.map((item) => (
+      <article>
+        <h3 class="title">{item.href ? <a href={item.href}>{item.title}</a> : item.title}</h3>
+        <p class="summary">{item.summary}</p>
+        <dl class="facts">
+          {[{ label: work.kindLabel, value: item.kind }, ...item.facts].map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    ))}
+  </div>
+
+  <h3 class="side-heading">{work.sideHeading}</h3>
+  <ul class="side">
+    {work.side.map((project) => (
+      <li>
+        <p class="side-title">{project.title}</p>
+        <p class="side-summary">{project.summary}</p>
+        <ul class="tags">{project.stack.map((tech) => <li>{tech}</li>)}</ul>
+        <p class="side-links">
+          {project.demo && <a href={project.demo}>{work.demoLabel}</a>}
+          <a href={project.code}>{work.codeLabel}</a>
+        </p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .featured { display: grid; gap: clamp(112px, 10vw, 144px); }
+  article {
+    display: grid; grid-template-columns: 1fr minmax(0, 30rem); grid-template-areas: 'title summary' 'title facts';
+    column-gap: 32px; align-items: start;
+  }
+  .title { grid-area: title; font-weight: 600; font-size: var(--step-head); line-height: 0.95; letter-spacing: -0.035em; max-width: 14ch; }
+  .title a:hover { color: var(--accent); }
+  .summary { grid-area: summary; max-width: 42ch; }
+  .facts { grid-area: facts; margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 16px 24px; font-size: var(--step-small); }
+  .facts dt { color: var(--muted); }
+
+  .side-heading { margin-top: clamp(96px, 10vw, 160px); margin-bottom: 32px; font-weight: 600; font-size: var(--step-lead); letter-spacing: -0.02em; }
+  .side { list-style: none; padding: 0; display: grid; gap: 28px; }
+  .side > li { display: grid; grid-template-columns: 12rem 1fr 1fr auto; gap: 8px 32px; align-items: baseline; }
+  .side-title { font-weight: 600; font-size: var(--step-lead); }
+  .side-links { display: flex; gap: 20px; }
+  .side-links a { color: var(--accent); }
+  .side-links a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+  @media (max-width: 900px) {
+    article { grid-template-columns: 1fr; grid-template-areas: 'title' 'summary' 'facts'; }
+    .summary { margin-top: 16px; }
+    .side { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 40px 32px; }
+    .side > li { grid-template-columns: 1fr; }
+  }
+</style>

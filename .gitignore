@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.astro/
+# design tool scratch (throwaway sketches, caches)
+.impeccable/
+.taste-skill/

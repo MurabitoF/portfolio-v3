@@ -1,0 +1,79 @@
+name: Franco Murabito
+title: Franco Murabito, fullstack developer
+description: Fullstack developer with four years taking client requirements to production with React, Java/Spring Boot and Node/NestJS.
+lede: Fullstack developer. Four years taking client requirements to production with React, Spring Boot and NestJS.
+cv: { label: Download CV, href: /cv-en.pdf }
+nav:
+  - { label: Experience, href: '#experience' }
+  - { label: Work, href: '#work' }
+  - { label: Contact, href: '#contact' }
+theme: { toDark: Dark mode, toLight: Light mode }
+deploy: { label: Deployed, commit: commit }
+switchLocale: { label: Español, href: /es/, lang: es }
+about:
+  heading: About
+  # SAMPLE: replace with Franco's own words
+  paragraph: I take a client's requirement and carry it all the way to production. Four years at Epidata and AyiGroup building microservices in Spring Boot and NestJS and the React interfaces that sit on top of them, for teams in several industries.
+  facts:
+    - { label: Based in, value: Argentina }
+    - { label: Works, value: Remote or hybrid }
+    - { label: Experience, value: 4 years }
+  skills:
+    - { label: Frontend, items: [JavaScript, TypeScript, React] }
+    - { label: Backend, items: [Java, Spring Boot, Node.js, NestJS, Microservices] }
+    - { label: Data, items: [PostgreSQL, MySQL, MongoDB] }
+    - { label: Infrastructure, items: [Docker, AWS, GCP, GitHub Actions, GitLab CI, Jenkins] }
+experience:
+  heading: Experience
+  items:
+    - company: AyiGroup
+      role: '[To do: role]'
+      period: '[To do: start – end]'
+      summary: '[To do: one sentence on what you built and for which kind of client]'
+      stack: [Java, Spring Boot, React]
+    - company: Epidata
+      role: '[To do: role]'
+      period: '[To do: start – end]'
+      summary: '[To do: one sentence on what you built and for which kind of client]'
+      stack: [Node.js, NestJS, React]
+work:
+  heading: Work
+  featured:
+    - title: Page builder
+      kind: Flagship project, in progress
+      summary: A platform to build web pages by dragging and arranging components. Modular monolith in Spring Boot with an asynchronous worker on RabbitMQ.
+      facts:
+        - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
+        - { label: Status, value: In development }
+    - title: '[To do: case study 1 title]'
+      kind: Case study
+      summary: '[To do: the problem, what you decided and the result, anonymized if under NDA]'
+      facts:
+        - { label: Industry, value: '[To do]' }
+        - { label: Role, value: '[To do]' }
+        - { label: Stack, value: '[To do]' }
+    - title: '[To do: case study 2 title]'
+      kind: Case study
+      summary: '[To do: the problem, what you decided and the result, anonymized if under NDA]'
+      facts:
+        - { label: Industry, value: '[To do]' }
+        - { label: Role, value: '[To do]' }
+        - { label: Stack, value: '[To do]' }
+  sideHeading: Side projects
+  side:
+    - { title: Devscord, summary: Group chat for developers., stack: [React, TypeScript, Firebase], demo: 'https://devscord.vercel.app', code: 'https://github.com/MurabitoF/devscord' }
+    - { title: Prototypes, summary: 'An online playground for HTML, CSS and JavaScript.', stack: [React, TypeScript, Vite], demo: 'https://prototypes-gamma.vercel.app', code: 'https://github.com/MurabitoF/prototypes' }
+    - { title: Task Board, summary: A task board with its own REST API., stack: [React, NestJS, Prisma], code: 'https://github.com/MurabitoF/task-board-api' }
+  kindLabel: Type
+  demoLabel: Demo
+  codeLabel: Code
+contact:
+  heading: Contact
+  lead: Open to semi-senior and senior fullstack roles, remote or hybrid.
+  rows:
+    - { label: Email, value: hola@francomurabito.dev, href: 'mailto:hola@francomurabito.dev' }
+    - { label: LinkedIn, value: in/franco-murabito, href: 'https://www.linkedin.com/in/franco-murabito/' }
+    - { label: GitHub, value: MurabitoF, href: 'https://github.com/MurabitoF' }
+    - { label: CV, value: Download PDF, href: /cv-en.pdf }
+footer:
+  rights: Built with Astro.

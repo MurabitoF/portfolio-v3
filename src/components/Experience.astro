@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { site: CollectionEntry<'site'>['data'] }
+const { experience } = Astro.props.site;
+---
+<section class="section" id="experience" aria-labelledby="experience-heading">
+  <h2 class="section-heading" id="experience-heading">{experience.heading}</h2>
+  <ol class="jobs">
+    {experience.items.map((job) => (
+      <li>
+        <h3 class="company">{job.company}</h3>
+        <div class="detail">
+          <p class="role">{job.role}</p>
+          <p class="period">{job.period}</p>
+          <p class="summary">{job.summary}</p>
+          <ul class="tags">{job.stack.map((tech) => <li>{tech}</li>)}</ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .jobs { list-style: none; padding: 0; display: grid; gap: clamp(56px, 7vw, 104px); }
+  .jobs > li { display: grid; grid-template-columns: 1fr minmax(0, 30rem); gap: 32px; align-items: start; }
+  .company { font-weight: 600; font-size: var(--step-head); line-height: 0.95; letter-spacing: -0.035em; }
+  .role { font-size: var(--step-lead); line-height: 1.3; }
+  .period { color: var(--muted); margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .summary { margin-top: 20px; max-width: 42ch; }
+  .tags { margin-top: 16px; }
+
+  @media (max-width: 760px) {
+    .jobs { gap: 88px; }
+    .jobs > li { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>

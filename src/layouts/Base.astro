@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+
+interface Props { lang: string; title: string; description: string; alternate: { lang: string; href: string } }
+const { lang, title, description, alternate } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="alternate" hreflang={alternate.lang} href={new URL(alternate.href, Astro.site)} />
+    <link rel="alternate" hreflang={lang} href={new URL(Astro.url.pathname, Astro.site)} />
+    <!-- A theme the visitor picked wins over the system setting; set before paint to avoid a flash. -->
+    <script is:inline>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
+  </head>
+  <body>
+    <canvas class="field" aria-hidden="true"></canvas>
+    <slot />
+    <script>
+      import { mountField } from '../scripts/field';
+      import { mountReveal } from '../scripts/reveal';
+      mountField(document.querySelector<HTMLCanvasElement>('canvas.field')!);
+      mountReveal();
+    </script>
+    <style>
+      .field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
+    </style>
+  </body>
+</html>

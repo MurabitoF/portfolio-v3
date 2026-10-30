@@ -1,0 +1,79 @@
+name: Franco Murabito
+title: Franco Murabito, desarrollador fullstack
+description: Desarrollador fullstack con cuatro años llevando requerimientos de clientes a producción con React, Java/Spring Boot y Node/NestJS.
+lede: Desarrollador fullstack. Cuatro años llevando requerimientos de clientes a producción con React, Spring Boot y NestJS.
+cv: { label: Descargar CV, href: /cv-es.pdf }
+nav:
+  - { label: Experiencia, href: '#experience' }
+  - { label: Trabajo, href: '#work' }
+  - { label: Contacto, href: '#contact' }
+theme: { toDark: Modo oscuro, toLight: Modo claro }
+deploy: { label: Deploy, commit: commit }
+switchLocale: { label: English, href: /, lang: en }
+about:
+  heading: Sobre mí
+  # MUESTRA: reemplazar con texto de Franco
+  paragraph: Tomo el requerimiento de un cliente y lo llevo hasta producción. Cuatro años en Epidata y AyiGroup construyendo microservicios en Spring Boot y NestJS y las interfaces en React que los usan, para equipos de distintas industrias.
+  facts:
+    - { label: Desde, value: Argentina }
+    - { label: Modalidad, value: Remoto o híbrido }
+    - { label: Experiencia, value: 4 años }
+  skills:
+    - { label: Frontend, items: [JavaScript, TypeScript, React] }
+    - { label: Backend, items: [Java, Spring Boot, Node.js, NestJS, Microservicios] }
+    - { label: Datos, items: [PostgreSQL, MySQL, MongoDB] }
+    - { label: Infraestructura, items: [Docker, AWS, GCP, GitHub Actions, GitLab CI, Jenkins] }
+experience:
+  heading: Experiencia
+  items:
+    - company: AyiGroup
+      role: '[Por completar: rol]'
+      period: '[Por completar: inicio – fin]'
+      summary: '[Por completar: una frase sobre qué construiste y para qué tipo de cliente]'
+      stack: [Java, Spring Boot, React]
+    - company: Epidata
+      role: '[Por completar: rol]'
+      period: '[Por completar: inicio – fin]'
+      summary: '[Por completar: una frase sobre qué construiste y para qué tipo de cliente]'
+      stack: [Node.js, NestJS, React]
+work:
+  heading: Trabajo
+  featured:
+    - title: Page builder
+      kind: Proyecto principal, en desarrollo
+      summary: Una plataforma para armar páginas web arrastrando y ordenando componentes. Monolito modular en Spring Boot con un worker asíncrono sobre RabbitMQ.
+      facts:
+        - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
+        - { label: Estado, value: En desarrollo }
+    - title: '[Por completar: título del caso 1]'
+      kind: Caso de estudio
+      summary: '[Por completar: el problema, qué decidiste y el resultado, anonimizado si hay NDA]'
+      facts:
+        - { label: Industria, value: '[Por completar]' }
+        - { label: Rol, value: '[Por completar]' }
+        - { label: Stack, value: '[Por completar]' }
+    - title: '[Por completar: título del caso 2]'
+      kind: Caso de estudio
+      summary: '[Por completar: el problema, qué decidiste y el resultado, anonimizado si hay NDA]'
+      facts:
+        - { label: Industria, value: '[Por completar]' }
+        - { label: Rol, value: '[Por completar]' }
+        - { label: Stack, value: '[Por completar]' }
+  sideHeading: Side projects
+  side:
+    - { title: Devscord, summary: Chat grupal para desarrolladores., stack: [React, TypeScript, Firebase], demo: 'https://devscord.vercel.app', code: 'https://github.com/MurabitoF/devscord' }
+    - { title: Prototypes, summary: 'Un playground online de HTML, CSS y JavaScript.', stack: [React, TypeScript, Vite], demo: 'https://prototypes-gamma.vercel.app', code: 'https://github.com/MurabitoF/prototypes' }
+    - { title: Task Board, summary: Un tablero de tareas con su propia API REST., stack: [React, NestJS, Prisma], code: 'https://github.com/MurabitoF/task-board-api' }
+  kindLabel: Tipo
+  demoLabel: Demo
+  codeLabel: Código
+contact:
+  heading: Contacto
+  lead: Disponible para posiciones fullstack semi-senior y senior, remotas o híbridas.
+  rows:
+    - { label: Email, value: hola@francomurabito.dev, href: 'mailto:hola@francomurabito.dev' }
+    - { label: LinkedIn, value: in/franco-murabito, href: 'https://www.linkedin.com/in/franco-murabito/' }
+    - { label: GitHub, value: MurabitoF, href: 'https://github.com/MurabitoF' }
+    - { label: CV, value: Descargar PDF, href: /cv-es.pdf }
+footer:
+  rights: Hecho con Astro.
