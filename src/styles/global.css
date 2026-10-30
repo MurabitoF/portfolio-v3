@@ -101,7 +101,8 @@ main:focus { outline: none; }
 /* One column system for every section: label/name column, then the reading column. */
 :root { --col-split: 34%; --col-read: 36rem; --col-gap: 32px; }
 .cols { display: grid; grid-template-columns: var(--col-split) minmax(0, var(--col-read)); column-gap: var(--col-gap); align-items: start; }
-@media (max-width: 860px) { .cols { grid-template-columns: minmax(0, 1fr); row-gap: 16px; } }
+/* One column keeps the reading measure: content never runs wider than the reading column. */
+@media (max-width: 860px) { .cols { grid-template-columns: minmax(0, var(--col-read)); row-gap: 16px; } }
 
 /* The pipeline motif, top to bottom: requirement, decision, outcome. Same dots as the hero's live strip. */
 .stages { list-style: none; padding: 0; display: grid; gap: 16px; }
