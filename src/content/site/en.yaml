@@ -29,7 +29,7 @@ experience:
   heading: Experience
   items:
     - company: AyiGroup
-      role: Fullstack Developer
+      role: Fullstack developer
       period: Jul 2024 – present
       summary: New features for the Colonia Suiza platforms and their satellite products, for a client in workers' compensation insurance.
       highlights:
@@ -37,7 +37,7 @@ experience:
         - Spent a long stretch supporting the client's apps and fixed a large share of their bugs; today I'm the team's go-to person when something hard breaks.
       stack: [React, TypeScript, Java, Spring Boot, Node.js, NestJS, AWS Lambda, MySQL]
     - company: Epidata
-      role: Fullstack Developer
+      role: Fullstack developer
       period: Nov 2022 – Jul 2024
       summary: "Fullstack development for healthcare clients: pharmacies and Galeno's medical centers."
       highlights:
