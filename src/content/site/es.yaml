@@ -15,8 +15,13 @@ deploy: { label: 'Este sitio, en vivo:', commit: Commit, build: Build, ok: ok, d
 switchLocale: { label: English, href: /, lang: en }
 about:
   heading: Sobre mí
-  paragraph: "Tomo un requerimiento y lo llevo hasta producción. Construyo sistemas para salud y seguros: servicios en Spring Boot y NestJS en el backend, interfaces en React en el frontend. Trabajo en equipos de hasta seis personas, codo a codo con diseño, producto y analistas funcionales."
+  paragraph: "Tomo un requerimiento y lo llevo hasta producción: servicios en Spring Boot y NestJS en el backend, interfaces en React en el frontend. En cuatro años de consultora trabajé para clientes de salud y seguros, entrando rápido en cada negocio y trabajando codo a codo con diseño, producto y analistas funcionales."
   skillsHeading: Conocimientos
+  languages:
+    heading: Idiomas
+    items:
+      - { label: Español, value: Nativo }
+      - { label: Inglés, value: 'Avanzado: escrito C1, oral B2' }
   facts:
     - { label: Desde, value: 'Mar del Plata, Argentina' }
     - { label: Modalidad, value: Remoto o híbrido }
@@ -61,6 +66,7 @@ work:
         - { label: Período, value: nov. 2026 – actualidad }
       demo: 'https://d1qcidvnny7mze.cloudfront.net'
       code: 'https://github.com/MurabitoF/precios-super'
+      inCv: true
     - title: Portal de prestadores
       kind: Caso de estudio · AyiGroup
       summary: Un producto satélite de la plataforma de Colonia Suiza, que desarrollé de punta a punta.

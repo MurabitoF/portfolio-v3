@@ -15,8 +15,13 @@ deploy: { label: 'This site, live:', commit: Commit, build: Build, ok: passed, d
 switchLocale: { label: Español, href: /es/, lang: es }
 about:
   heading: About
-  paragraph: "I take a requirement and carry it all the way to production. I build systems for healthcare and insurance: Spring Boot and NestJS services on the backend, React interfaces on the frontend. I work in teams of up to six, side by side with design, product and functional analysts."
+  paragraph: "I take a requirement and carry it all the way to production: Spring Boot and NestJS services on the backend, React interfaces on the frontend. In four years at consultancies I've worked for healthcare and insurance clients, getting up to speed on each business quickly and working side by side with design, product and functional analysts."
   skillsHeading: Skills
+  languages:
+    heading: Languages
+    items:
+      - { label: Spanish, value: Native }
+      - { label: English, value: 'Advanced: written C1, spoken B2' }
   facts:
     - { label: Based in, value: 'Mar del Plata, Argentina' }
     - { label: Works, value: Remote or hybrid }
@@ -61,6 +66,7 @@ work:
         - { label: Period, value: Nov 2026 – present }
       demo: 'https://d1qcidvnny7mze.cloudfront.net'
       code: 'https://github.com/MurabitoF/precios-super'
+      inCv: true
     - title: Provider portal
       kind: Case study · AyiGroup
       summary: A satellite product of the Colonia Suiza platform, which I built end to end.

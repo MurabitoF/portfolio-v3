@@ -23,6 +23,7 @@ const site = defineCollection({
       heading: z.string(),
       paragraph: z.string(),
       skillsHeading: z.string(),
+      languages: z.strictObject({ heading: z.string(), items: z.array(z.strictObject({ label: z.string(), value: z.string() })) }), // CV only
       facts: z.array(z.strictObject({ label: z.string(), value: z.string() })),
       skills: z.array(z.strictObject({ label: z.string(), items: z.array(z.string()) })),
     }),
@@ -39,6 +40,7 @@ const site = defineCollection({
         image: z.strictObject({ src: z.string(), alt: z.string(), width: z.number(), height: z.number() }).optional(),
         demo: z.string().optional(),
         code: z.string().optional(),
+        inCv: z.boolean().optional(), // the CV lists only these; case studies repeat the experience entries
       })),
       sideHeading: z.string(),
       side: z.array(z.strictObject({ title: z.string(), summary: z.string(), stack: z.array(z.string()), demo: z.string().optional(), code: z.string() })),

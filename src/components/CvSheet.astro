@@ -55,7 +55,7 @@ const role = site.description.split('.')[0];
 
       <section>
         <h2>{work.heading}</h2>
-        {work.featured.map((project) => {
+        {work.featured.filter((project) => project.inCv).map((project) => {
           const period = project.facts.find((f) => /per[ií]od/i.test(f.label))?.value;
           const stack = project.facts.find((f) => f.label === 'Stack')?.value;
           return (
@@ -70,12 +70,6 @@ const role = site.description.split('.')[0];
             </div>
           );
         })}
-        <div class="entry">
-          <div class="when">{work.sideHeading}</div>
-          <ul class="side">
-            {work.side.map((p) => <li><b>{p.title}</b>: {p.summary} <span class="stack">{p.stack.join(', ')}</span></li>)}
-          </ul>
-        </div>
       </section>
 
       <section>
@@ -84,20 +78,29 @@ const role = site.description.split('.')[0];
           {about.skills.map((group) => <div><dt>{group.label}</dt><dd>{group.items.join(', ')}</dd></div>)}
         </dl>
       </section>
+
+      <div class="pair">
+        <section>
+          <h2>{about.languages.heading}</h2>
+          <ul class="inline">
+            {about.languages.items.map((lang) => <li><b>{lang.label}</b> {lang.value}</li>)}
+          </ul>
+        </section>
+      </div>
     </article>
   </body>
 </html>
 
 <style is:global>
   /* Paper, not screen: always light, ink on white, Graphite's light accent for links. */
-  @page { size: A4; margin: 14mm 16mm; }
+  @page { size: A4; margin: 12mm 15mm; }
   :root { --ink: #15171b; --muted: #5e636b; --rule: #d4d7dc; --accent: #2f5bd3; color-scheme: light; }
   * { box-sizing: border-box; }
   html { background: #e4e6ea; }
   body {
     margin: 0; color: var(--ink);
     font-family: 'Host Grotesk Variable', system-ui, sans-serif;
-    font-size: 10pt; line-height: 1.45;
+    font-size: 9.5pt; line-height: 1.4;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   h1, h2, h3, p, ul, dl, dd { margin: 0; }
@@ -105,7 +108,7 @@ const role = site.description.split('.')[0];
   ::selection { background: var(--accent); color: #fff; }
 
   /* On screen the sheet sits on a desk at A4 width; in print the page margins take over. */
-  .sheet { width: 210mm; min-height: 297mm; margin: 24px auto; padding: 14mm 16mm; background: #fff; box-shadow: 0 2px 16px rgb(0 0 0 / 0.12); }
+  .sheet { width: 210mm; min-height: 297mm; margin: 24px auto; padding: 12mm 15mm; background: #fff; box-shadow: 0 2px 16px rgb(0 0 0 / 0.12); }
   @media print { html { background: none; } .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; } }
   @media screen and (max-width: 220mm) { .sheet { width: auto; margin: 0; padding: 24px 16px; box-shadow: none; } }
 
@@ -117,20 +120,23 @@ const role = site.description.split('.')[0];
   .facts { color: var(--muted); }
   .facts span { color: var(--ink); font-weight: 500; }
 
-  .summary { margin-top: 12px; max-width: 62em; }
+  .summary { margin-top: 10px; max-width: 62em; }
 
-  section { margin-top: 16px; }
+  section { margin-top: 12px; }
   h2 { font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-bottom: 4px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
   .entry { display: grid; grid-template-columns: 30mm minmax(0, 1fr); column-gap: 6mm; padding: 6px 0; break-inside: avoid; }
   .when { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 9pt; padding-top: 1px; }
   h3 { font-size: 11pt; font-weight: 600; letter-spacing: -0.01em; }
   .kind { font-weight: 400; color: var(--muted); }
   .entry p { margin-top: 2px; }
-  .bullets, .side { padding-left: 1.1em; margin-top: 4px; display: grid; gap: 2px; }
-  .side { padding-left: 1.1em; margin: 0; }
+  .bullets { padding-left: 1.1em; margin-top: 4px; display: grid; gap: 2px; }
   .stack { color: var(--muted); font-size: 9pt; margin-top: 4px; }
-  .side .stack { margin-left: 4px; }
 
-  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 6mm; }
+  .skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px 6mm; }
+  section { break-inside: avoid; }
   .skills dt { font-weight: 600; }
+  /* Short closing sections share one row (languages now, education next to it). */
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(60mm, 1fr)); column-gap: 6mm; }
+  .inline { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 16px; }
+  .inline b { font-weight: 600; }
 </style>
