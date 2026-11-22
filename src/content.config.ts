@@ -8,6 +8,7 @@ const site = defineCollection({
   loader: glob({ pattern: '*.yaml', base: './src/content/site' }),
   schema: z.strictObject({
     name: z.string(),
+    role: z.string(), // short role line: CV header
     title: z.string(),
     description: z.string(),
     lede: z.string(),
