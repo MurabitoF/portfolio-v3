@@ -17,6 +17,10 @@ about:
   heading: About
   paragraph: "I take a requirement and carry it all the way to production: Spring Boot and NestJS services on the backend, React interfaces on the frontend. In four years at consultancies I've worked for healthcare and insurance clients, getting up to speed on each business quickly and working side by side with design, product and functional analysts."
   skillsHeading: Skills
+  education:
+    heading: Education
+    items:
+      - { title: Associate degree in Programming, school: Universidad Tecnológica Nacional (UTN), period: 2020 – 2021 }
   languages:
     heading: Languages
     items:

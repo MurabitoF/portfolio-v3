@@ -81,6 +81,10 @@ const role = site.description.split('.')[0];
 
       <div class="pair">
         <section>
+          <h2>{about.education.heading}</h2>
+          {about.education.items.map((edu) => <p><b>{edu.title}</b><br />{edu.school} · {edu.period}</p>)}
+        </section>
+        <section>
           <h2>{about.languages.heading}</h2>
           <ul class="inline">
             {about.languages.items.map((lang) => <li><b>{lang.label}</b> {lang.value}</li>)}
@@ -138,5 +142,5 @@ const role = site.description.split('.')[0];
   /* Short closing sections share one row (languages now, education next to it). */
   .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(60mm, 1fr)); column-gap: 6mm; }
   .inline { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 16px; }
-  .inline b { font-weight: 600; }
+  .inline b, .pair p b { font-weight: 600; }
 </style>

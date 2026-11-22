@@ -23,6 +23,7 @@ const site = defineCollection({
       heading: z.string(),
       paragraph: z.string(),
       skillsHeading: z.string(),
+      education: z.strictObject({ heading: z.string(), items: z.array(z.strictObject({ title: z.string(), school: z.string(), period: z.string() })) }), // CV only
       languages: z.strictObject({ heading: z.string(), items: z.array(z.strictObject({ label: z.string(), value: z.string() })) }), // CV only
       facts: z.array(z.strictObject({ label: z.string(), value: z.string() })),
       skills: z.array(z.strictObject({ label: z.string(), items: z.array(z.string()) })),
