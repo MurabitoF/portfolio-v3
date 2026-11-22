@@ -8,6 +8,7 @@ import Experience from '../../components/Experience.astro';
 import Work from '../../components/Work.astro';
 import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
+import PersonData from '../../components/PersonData.astro';
 
 const site = (await getEntry('site', 'es'))!.data;
 ---
@@ -21,4 +22,5 @@ const site = (await getEntry('site', 'es'))!.data;
     <Contact site={site} />
   </main>
   <Footer site={site} />
+  <PersonData site={site} lang="es" />
 </Base>

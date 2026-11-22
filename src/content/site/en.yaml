@@ -6,6 +6,7 @@ lede: Fullstack developer. Four years taking client requirements to production w
 availability: Open to fullstack roles, remote or hybrid.
 contactCta: Email me
 skip: Skip to content
+notFound: { title: Page not found, text: 'This page does not exist, or it moved.', back: Back to the home page }
 cv: { label: Download CV, href: /cv-en.pdf }
 nav:
   - { label: Experience, href: '#experience' }

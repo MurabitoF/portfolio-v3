@@ -6,6 +6,7 @@ lede: Desarrollador fullstack. Cuatro años llevando requerimientos de clientes 
 availability: Disponible para posiciones fullstack, remotas o híbridas.
 contactCta: Escribime
 skip: Saltar al contenido
+notFound: { title: Página no encontrada, text: 'Esta página no existe o cambió de lugar.', back: Volver al inicio }
 cv: { label: Descargar CV, href: /cv-es.pdf }
 nav:
   - { label: Experiencia, href: '#experience' }

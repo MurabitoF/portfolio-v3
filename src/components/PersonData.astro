@@ -1,0 +1,32 @@
+---
+// schema.org ProfilePage + Person: how search engines and AI agents read who this is, built from the same content file.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { site: CollectionEntry<'site'>['data']; lang: string }
+const { site, lang } = Astro.props;
+const url = new URL(lang === 'en' ? '/' : `/${lang}/`, Astro.site).href;
+const email = site.contact.rows.find((row) => row.href.startsWith('mailto:'))?.value;
+const current = site.experience.items[0];
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url,
+  inLanguage: lang,
+  mainEntity: {
+    '@type': 'Person',
+    name: site.name,
+    jobTitle: site.role.split('·')[0].trim(),
+    description: site.description,
+    url,
+    email,
+    address: { '@type': 'PostalAddress', addressLocality: 'Mar del Plata', addressCountry: 'AR' },
+    sameAs: site.contact.rows.filter((row) => row.href.startsWith('https://')).map((row) => row.href),
+    worksFor: { '@type': 'Organization', name: current.company },
+    alumniOf: site.about.education.items.map((edu) => ({ '@type': 'CollegeOrUniversity', name: edu.school })),
+    knowsAbout: site.about.skills.flatMap((group) => group.items),
+    knowsLanguage: site.about.languages.items.map((item) => item.label),
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

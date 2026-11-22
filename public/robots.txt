@@ -1,0 +1,5 @@
+# Search engines and AI agents are welcome: everything here is public on purpose.
+User-agent: *
+Allow: /
+
+Sitemap: https://francomurabito.dev/sitemap.xml

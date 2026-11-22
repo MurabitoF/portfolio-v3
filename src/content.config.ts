@@ -15,6 +15,7 @@ const site = defineCollection({
     availability: z.string(),
     contactCta: z.string(),
     skip: z.string(),
+    notFound: z.strictObject({ title: z.string(), text: z.string(), back: z.string() }),
     cv: z.strictObject({ label: z.string(), href: z.string() }),
     nav: z.array(z.strictObject({ label: z.string(), href: z.string() })),
     switchLocale: z.strictObject({ label: z.string(), href: z.string(), lang: z.string() }),
