@@ -1,0 +1,7 @@
+---
+import { getEntry } from 'astro:content';
+import CvSheet from '../components/CvSheet.astro';
+
+const site = (await getEntry('site', 'en'))!.data;
+---
+<CvSheet site={site} lang="en" />

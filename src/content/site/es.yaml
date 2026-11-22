@@ -16,6 +16,7 @@ switchLocale: { label: English, href: /, lang: en }
 about:
   heading: Sobre mí
   paragraph: "Tomo un requerimiento y lo llevo hasta producción. Construyo sistemas para salud y seguros: servicios en Spring Boot y NestJS en el backend, interfaces en React en el frontend. Trabajo en equipos de hasta seis personas, codo a codo con diseño, producto y analistas funcionales."
+  skillsHeading: Conocimientos
   facts:
     - { label: Desde, value: 'Mar del Plata, Argentina' }
     - { label: Modalidad, value: Remoto o híbrido }

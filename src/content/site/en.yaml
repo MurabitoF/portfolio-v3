@@ -16,6 +16,7 @@ switchLocale: { label: Español, href: /es/, lang: es }
 about:
   heading: About
   paragraph: "I take a requirement and carry it all the way to production. I build systems for healthcare and insurance: Spring Boot and NestJS services on the backend, React interfaces on the frontend. I work in teams of up to six, side by side with design, product and functional analysts."
+  skillsHeading: Skills
   facts:
     - { label: Based in, value: 'Mar del Plata, Argentina' }
     - { label: Works, value: Remote or hybrid }

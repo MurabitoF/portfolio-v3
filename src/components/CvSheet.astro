@@ -1,0 +1,136 @@
+---
+// The printable CV: same content files as the site, set for A4. scripts/cv-pdf.mjs prints it to public/cv-<lang>.pdf.
+import '@fontsource-variable/host-grotesk/wght.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { site: CollectionEntry<'site'>['data']; lang: string }
+const { site, lang } = Astro.props;
+const { about, experience, work, contact } = site;
+const siteUrl = Astro.site!;
+// Everything but the CV itself: a PDF that links to its own download is noise.
+const links = [
+  ...contact.rows.filter((row) => !row.href.endsWith('.pdf')),
+  { label: 'Web', value: siteUrl.host, href: new URL(lang === 'en' ? '/' : `/${lang}/`, siteUrl).href },
+];
+const role = site.description.split('.')[0];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{site.name} · CV</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <article class="sheet">
+      <header class="head">
+        <h1>{site.name}</h1>
+        <p class="role">{role}.</p>
+        <ul class="links">
+          {links.map((row) => <li><a href={row.href}>{row.value}</a></li>)}
+        </ul>
+        <ul class="facts">
+          {about.facts.map((fact) => <li><span>{fact.label}</span> {fact.value}</li>)}
+        </ul>
+      </header>
+
+      <p class="summary">{about.paragraph}</p>
+
+      <section>
+        <h2>{experience.heading}</h2>
+        {experience.items.map((job) => (
+          <div class="entry">
+            <div class="when">{job.period}</div>
+            <div>
+              <h3>{job.role} · {job.company}</h3>
+              <p>{job.summary}</p>
+              <ul class="bullets">{job.highlights.map((item) => <li>{item}</li>)}</ul>
+              <p class="stack">{job.stack.join(', ')}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section>
+        <h2>{work.heading}</h2>
+        {work.featured.map((project) => {
+          const period = project.facts.find((f) => /per[ií]od/i.test(f.label))?.value;
+          const stack = project.facts.find((f) => f.label === 'Stack')?.value;
+          return (
+            <div class="entry">
+              <div class="when">{period}</div>
+              <div>
+                <h3>{project.title} <span class="kind">· {project.kind}</span></h3>
+                <p>{project.summary}</p>
+                <ul class="bullets">{project.stages.map((stage) => <li><b>{stage.label}.</b> {stage.text}</li>)}</ul>
+                {stack && <p class="stack">{stack}</p>}
+              </div>
+            </div>
+          );
+        })}
+        <div class="entry">
+          <div class="when">{work.sideHeading}</div>
+          <ul class="side">
+            {work.side.map((p) => <li><b>{p.title}</b>: {p.summary} <span class="stack">{p.stack.join(', ')}</span></li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>{about.skillsHeading}</h2>
+        <dl class="skills">
+          {about.skills.map((group) => <div><dt>{group.label}</dt><dd>{group.items.join(', ')}</dd></div>)}
+        </dl>
+      </section>
+    </article>
+  </body>
+</html>
+
+<style is:global>
+  /* Paper, not screen: always light, ink on white, Graphite's light accent for links. */
+  @page { size: A4; margin: 14mm 16mm; }
+  :root { --ink: #15171b; --muted: #5e636b; --rule: #d4d7dc; --accent: #2f5bd3; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html { background: #e4e6ea; }
+  body {
+    margin: 0; color: var(--ink);
+    font-family: 'Host Grotesk Variable', system-ui, sans-serif;
+    font-size: 10pt; line-height: 1.45;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h1, h2, h3, p, ul, dl, dd { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* On screen the sheet sits on a desk at A4 width; in print the page margins take over. */
+  .sheet { width: 210mm; min-height: 297mm; margin: 24px auto; padding: 14mm 16mm; background: #fff; box-shadow: 0 2px 16px rgb(0 0 0 / 0.12); }
+  @media print { html { background: none; } .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; } }
+  @media screen and (max-width: 220mm) { .sheet { width: auto; margin: 0; padding: 24px 16px; box-shadow: none; } }
+
+  .head { display: grid; gap: 4px; padding-bottom: 12px; border-bottom: 1.5px solid var(--ink); }
+  h1 { font-size: 26pt; font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
+  .role { font-size: 12pt; margin-top: 4px; }
+  .links, .facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 16px; }
+  .links { margin-top: 6px; color: var(--accent); font-weight: 500; }
+  .facts { color: var(--muted); }
+  .facts span { color: var(--ink); font-weight: 500; }
+
+  .summary { margin-top: 12px; max-width: 62em; }
+
+  section { margin-top: 16px; }
+  h2 { font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-bottom: 4px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+  .entry { display: grid; grid-template-columns: 30mm minmax(0, 1fr); column-gap: 6mm; padding: 6px 0; break-inside: avoid; }
+  .when { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 9pt; padding-top: 1px; }
+  h3 { font-size: 11pt; font-weight: 600; letter-spacing: -0.01em; }
+  .kind { font-weight: 400; color: var(--muted); }
+  .entry p { margin-top: 2px; }
+  .bullets, .side { padding-left: 1.1em; margin-top: 4px; display: grid; gap: 2px; }
+  .side { padding-left: 1.1em; margin: 0; }
+  .stack { color: var(--muted); font-size: 9pt; margin-top: 4px; }
+  .side .stack { margin-left: 4px; }
+
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 6mm; }
+  .skills dt { font-weight: 600; }
+</style>

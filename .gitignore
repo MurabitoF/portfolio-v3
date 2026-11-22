@@ -9,3 +9,6 @@ dist/
 PLAN.md
 PRODUCT.md
 DESIGN-BRIEF.md
+
+# generated in CI by scripts/cv-pdf.mjs
+public/cv-*.pdf

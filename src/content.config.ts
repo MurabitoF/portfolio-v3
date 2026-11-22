@@ -22,6 +22,7 @@ const site = defineCollection({
     about: z.strictObject({
       heading: z.string(),
       paragraph: z.string(),
+      skillsHeading: z.string(),
       facts: z.array(z.strictObject({ label: z.string(), value: z.string() })),
       skills: z.array(z.strictObject({ label: z.string(), items: z.array(z.string()) })),
     }),
