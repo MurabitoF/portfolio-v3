@@ -125,7 +125,10 @@ const links = [
   h3 { font-size: 11pt; font-weight: 600; letter-spacing: -0.01em; }
   .kind { font-weight: 400; color: var(--muted); }
   .entry p { margin-top: 2px; }
-  .bullets { padding-left: 1.1em; margin-top: 3px; display: grid; gap: 1px; }
+  .bullets { padding-left: 1.7em; margin-top: 3px; display: grid; gap: 1px; }
+  /* Indented off the margin so the bullets read as bullets, not as a stray mark on the edge. */
+  .bullets li { padding-left: 0.2em; }
+  .bullets li::marker { color: var(--muted); }
   .stack { color: var(--muted); font-size: 9pt; margin-top: 3px; }
 
   .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 6mm; }
