@@ -25,7 +25,7 @@ about:
     heading: Idiomas
     items:
       - { label: Español, value: Nativo }
-      - { label: Inglés, value: 'Avanzado: escrito C1, oral B2' }
+      - { label: Inglés, value: 'Comprensión C2 (EF SET), oral B2' }
   facts:
     - { label: Desde, value: 'Mar del Plata, Argentina' }
     - { label: Modalidad, value: Remoto o híbrido }

@@ -25,7 +25,7 @@ about:
     heading: Languages
     items:
       - { label: Spanish, value: Native }
-      - { label: English, value: 'Advanced: written C1, spoken B2' }
+      - { label: English, value: 'C2 comprehension (EF SET), B2 spoken' }
   facts:
     - { label: Based in, value: 'Mar del Plata, Argentina' }
     - { label: Works, value: Remote or hybrid }
