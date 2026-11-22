@@ -4,3 +4,8 @@ dist/
 # design tool scratch (throwaway sketches, caches)
 .impeccable/
 .taste-skill/
+
+# internal planning docs (kept local)
+PLAN.md
+PRODUCT.md
+DESIGN-BRIEF.md
