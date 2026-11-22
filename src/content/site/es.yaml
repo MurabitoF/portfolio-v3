@@ -47,15 +47,19 @@ experience:
 work:
   heading: Proyectos
   featured:
-    - title: Page builder
-      kind: Proyecto principal, en desarrollo
-      summary: Un constructor visual de páginas web, de punta a punta.
+    - title: Precios Super
+      kind: Proyecto personal
+      summary: Seguimiento de precios de supermercados argentinos a partir de la base pública de Precios Claros, con series históricas, una API pública y un dashboard de inflación por producto.
+      image: { src: /work/precios-super.webp, alt: 'Dashboard de Precios Super: variación semanal y acumulada de la canasta, gráfico semana a semana y detalle por producto.', width: 1600, height: 750 }
       stages:
-        - { label: Requerimiento, text: 'Armar páginas web sin escribir código, arrastrando y ordenando componentes.' }
-        - { label: Decisión, text: 'Monolito modular en Spring Boot con un worker asíncrono sobre RabbitMQ, en lugar de microservicios.' }
-        - { label: Resultado, text: 'En desarrollo.' }
+        - { label: Requerimiento, text: 'Precios Claros publica los precios de todos los supermercados del país, pero pisa cada archivo a los 7 días: sin un archivo propio no hay serie histórica.' }
+        - { label: Decisión, text: 'Guardar en S3 el ZIP de cada miércoles y resumir 14,3 millones de filas a la mediana por producto, cadena y semana, unas 240 mil. La API, Spring Boot en AWS Lambda con SnapStart: el arranque en frío baja de once segundos a uno.' }
+        - { label: Resultado, text: 'En producción: archivo semanal, API pública y dashboard. El índice de la canasta usa el método de Jevons, el mismo del IPC del INDEC.' }
       facts:
-        - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
+        - { label: Stack, value: 'Java, Spring Boot, AWS Lambda, S3, CloudFront, Turso, React, TypeScript, GitHub Actions' }
+        - { label: Período, value: nov. 2026 – actualidad }
+      demo: 'https://d1qcidvnny7mze.cloudfront.net'
+      code: 'https://github.com/MurabitoF/precios-super'
     - title: Portal de prestadores
       kind: Caso de estudio · AyiGroup
       summary: Un producto satélite de la plataforma de Colonia Suiza, que desarrollé de punta a punta.

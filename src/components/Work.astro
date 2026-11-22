@@ -11,11 +11,12 @@ const { work } = Astro.props.site;
     {work.featured.map((item) => (
       <article class="cols">
         <div>
-          <h3 class="item-title">{item.href ? <a href={item.href}>{item.title}</a> : item.title}</h3>
+          <h3 class="item-title">{item.title}</h3>
           <p class="kind">{item.kind}</p>
         </div>
         <div>
           <p>{item.summary}</p>
+          {item.image && <img class="shot" src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" decoding="async" />}
           <ol class="stages">
             {item.stages.map((stage) => (
               <li><span class="stage-label">{stage.label}</span>{stage.text}</li>
@@ -29,6 +30,12 @@ const { work } = Astro.props.site;
               </div>
             ))}
           </dl>
+          {(item.demo || item.code) && (
+            <p class="side-links">
+              {item.demo && <a href={item.demo} aria-label={`${work.demoLabel}: ${item.title}`}>{work.demoLabel}</a>}
+              {item.code && <a href={item.code} aria-label={`${work.codeLabel}: ${item.title}`}>{work.codeLabel}</a>}
+            </p>
+          )}
         </div>
       </article>
     ))}
@@ -55,7 +62,8 @@ const { work } = Astro.props.site;
 <style>
   .featured { display: grid; gap: clamp(72px, 7vw, 112px); }
   .item-title { max-width: 18ch; }
-  .item-title a:hover { color: var(--accent); }
+  .shot { display: block; width: 100%; height: auto; margin-top: 24px; border-radius: 8px; border: 1px solid color-mix(in oklab, var(--ink), transparent 85%); }
+  .featured .side-links { margin-top: 24px; }
   .kind { margin-top: 8px; color: var(--muted); }
   .stages { margin-top: 24px; }
   .facts { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; font-size: var(--step-small); }

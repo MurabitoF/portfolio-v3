@@ -47,15 +47,19 @@ experience:
 work:
   heading: Projects
   featured:
-    - title: Page builder
-      kind: Flagship project, in progress
-      summary: A visual web page builder, end to end.
+    - title: Precios Super
+      kind: Personal project
+      summary: Tracks Argentine supermarket prices from the public Precios Claros dataset, with historical series, a public API and a per-product inflation dashboard.
+      image: { src: /work/precios-super.webp, alt: 'Precios Super dashboard: weekly and cumulative change of the basket, a week-by-week chart and per-product detail.', width: 1600, height: 750 }
       stages:
-        - { label: Requirement, text: 'Build web pages without writing code, by dragging and arranging components.' }
-        - { label: Decision, text: 'A modular monolith in Spring Boot with an asynchronous worker on RabbitMQ, instead of microservices.' }
-        - { label: Outcome, text: 'In development.' }
+        - { label: Requirement, text: 'Precios Claros publishes the prices of every supermarket in the country, but overwrites each file after 7 days: without an archive of its own there is no history.' }
+        - { label: Decision, text: 'Store each Wednesday''s ZIP in S3 and reduce 14.3 million rows to the median per product, chain and week, about 240 thousand. The API runs Spring Boot on AWS Lambda with SnapStart, which cuts the cold start from eleven seconds to one.' }
+        - { label: Outcome, text: 'In production: weekly archive, public API and dashboard. The basket index uses the Jevons method, the same one Argentina''s official CPI uses.' }
       facts:
-        - { label: Stack, value: 'React, Spring Boot, PostgreSQL, RabbitMQ' }
+        - { label: Stack, value: 'Java, Spring Boot, AWS Lambda, S3, CloudFront, Turso, React, TypeScript, GitHub Actions' }
+        - { label: Period, value: Nov 2026 – present }
+      demo: 'https://d1qcidvnny7mze.cloudfront.net'
+      code: 'https://github.com/MurabitoF/precios-super'
     - title: Provider portal
       kind: Case study · AyiGroup
       summary: A satellite product of the Colonia Suiza platform, which I built end to end.
